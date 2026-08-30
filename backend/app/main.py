@@ -85,12 +85,19 @@ def seed_sample_data():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     print("Loading ML artifacts on startup...")
+
     try:
         model_loader.load_artifacts()
+        print("ML MODEL LOADED SUCCESSFULLY")
     except Exception as e:
-        print("Warning: Could not load ML artifacts on startup:", e)
+        print(f"ML MODEL LOAD ERROR: {type(e).__name__}: {e}")
 
-    seed_sample_data()
+    try:
+        seed_sample_data()
+        print("DATABASE SEEDING COMPLETED")
+    except Exception as e:
+        print(f"DATABASE SEEDING ERROR: {type(e).__name__}: {e}")
+
     yield
 
 app = FastAPI(
