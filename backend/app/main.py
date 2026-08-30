@@ -90,7 +90,9 @@ async def lifespan(app: FastAPI):
         model_loader.load_artifacts()
         print("ML MODEL LOADED SUCCESSFULLY")
     except Exception as e:
+        import traceback
         print(f"ML MODEL LOAD ERROR: {type(e).__name__}: {e}")
+        traceback.print_exc()
 
     try:
         seed_sample_data()
