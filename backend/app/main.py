@@ -121,8 +121,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Register API routes
+# Register health check both at root /health and /api/health for resilience
+app.include_router(health.router)
 app.include_router(health.router, prefix=settings.API_V1_STR)
+
+# Register API routes with /api prefix
 app.include_router(predictions.router, prefix=settings.API_V1_STR)
 app.include_router(transactions.router, prefix=settings.API_V1_STR)
 app.include_router(dashboard.router, prefix=settings.API_V1_STR)

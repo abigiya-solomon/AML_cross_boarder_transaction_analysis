@@ -1,10 +1,15 @@
 import axios from 'axios';
 
-// When deployed on Vercel, set VITE_API_URL to the Render backend URL:
-// e.g., https://aml-cross-border-backend.onrender.com/api
-// In local development, defaults to '/api' using the Vite proxy.
-const rawBaseUrl = import.meta.env.VITE_API_URL || '/api';
-const API_BASE = rawBaseUrl.endsWith('/') ? rawBaseUrl.slice(0, -1) : rawBaseUrl;
+// Resolves backend API URL whether user set VITE_API_URL with or without '/api' or trailing slash
+let rawBaseUrl = (import.meta.env.VITE_API_URL || '/api').trim();
+if (rawBaseUrl.endsWith('/')) {
+  rawBaseUrl = rawBaseUrl.slice(0, -1);
+}
+if (rawBaseUrl.startsWith('http') && !rawBaseUrl.endsWith('/api')) {
+  rawBaseUrl = `${rawBaseUrl}/api`;
+}
+
+const API_BASE = rawBaseUrl;
 
 const client = axios.create({
   baseURL: API_BASE,
