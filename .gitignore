@@ -1,0 +1,85 @@
+# ==========================================
+# AML Cross-Border Transaction Analysis .gitignore
+# ==========================================
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Type Checking
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.mypy_cache/
+.ruff_cache/
+
+# Node & Frontend Build
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Database & Local State
+*.db
+*.sqlite
+*.sqlite3
+backend/aml_database.db
+backend/test.txt
+
+# Environment Variables & Secrets
+.env
+.env.*
+!.env.example
+frontend/.env
+frontend/.env.local
+frontend/.env.*.local
+!frontend/.env.example
+
+# Logs & Temporary Files
+*.log
+scratch/
+.keep
+
+# Archive & Raw Datasets (prevent accidentally pushing large datasets)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.csv
+!backend/tests/*.csv
+
+# Operating System & IDEs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
